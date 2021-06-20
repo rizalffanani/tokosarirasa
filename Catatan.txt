@@ -1,0 +1,25 @@
+data order: 
+  1. tdk ada keterangan debit/tunai, dan diskon brp
+  2. waktu belum sesuai
+
+data kasir: rename menjadi data user (admin, kasir), cara lihat password bagaimana
+
+data sosmed: tdk ada create dan hapus
+
+data slider: input file (jpg)
+
+data kas: langsung tersimpan ke laporan.
+
+pesanan tamu:
+  1. checkout: input diskon, uang bayar, kembalian
+
+transaksi:
+  1. checkout: jumlah item dan total tidak berubah/bertambah.
+
+laporan: total keseluruhan (order, kas masuk, dan keluar)= dibuat per tanggal
+
+tampilan web daftar menu: 
+  1. Camilan dan Dessert = Nama Menu dan Deskripsi kurang tengah.
+  2. Popup "ok berhasil" = ditaruh ditengah
+
+harus logout dan login lagi dlm bbrp waktu
