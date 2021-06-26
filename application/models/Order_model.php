@@ -31,7 +31,7 @@ class Order_model extends CI_Model
         $this->datatables->where('status', 'belum bayar');
         //add this line for join
         $this->datatables->join('users', 'order.id_user = users.id');
-        $this->datatables->add_column('action', anchor(site_url('admin/pesanantamu/ckt/$1'),'Check Out')." | ".anchor(site_url('admin/pesanantamu/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_order');
+        $this->datatables->add_column('action', anchor(site_url('admin/pesanantamu/ckt/$1'),'Konfirmasi')." | ".anchor(site_url('admin/pesanantamu/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_order');
         return $this->datatables->generate();
     }
 

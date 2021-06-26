@@ -13,6 +13,7 @@
                           <tr><td>Nama</td><td><?= $row3->first_name?></td></tr>
                           <tr><td>Hp</td><td><?= $row3->phone?></td></tr>
                           <tr><td>Nota</td><td>#<?= $row->id_order?></td></tr>
+                          <tr><td>Status</td><td><?= $row->transaksi?></td></tr>
                           <?php if (!empty($row->lokasi)) {?>
                             <tr><td>Lokasi</td><td><?= $row->lokasi?></td></tr>
                             <tr><td>Catatan</td><td><?= $row->catatan?></td></tr>
@@ -61,10 +62,52 @@
                     <br>
                         <button type="submit" class="btn btn-primary">Konfirmasi</button> 
                   </form>
-                   <?php }?>
-                  <!-- <div class="order-footer">
-                    <span class="ng-binding">*Additional 10% government tax is not included in subtotal price</span>
-                  </div> --> 
+                   <?php }elseif($row->transaksi=="masuk"){?>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="box box-default">
+                          <!-- /.box-header -->
+                          <div class="box-body">
+                            <div class="callout callout-danger">
+                              <div class="order-footer">
+                                <span class="ng-binding">
+                                  Silahkan lakukan Pembayaran ke Rekening di bawah ini
+                                </span>
+                              </div> 
+                              <h4><?php $i = 1;foreach($row4 as $key){
+                                    echo($i.".".$key->nama_bank.' '.$key->nomor.' / '.$key->atas_nama.'<br>');
+                                    $i++;
+                              } ?></h4>
+                            </div>
+                          </div>
+                          <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                      </div>
+                      <div class="col-md-6">
+                        <div class="box box-default">
+                          <div class="box-body">
+                            <div class="callout callout-success">
+                              <h4>Bukti Pembayaran</h4>
+                              <form action="<?php echo site_url('web/upload'); ?>" method="post"  enctype="multipart/form-data" class="row">
+                                <input type="hidden" name="id" value="<?= $row->id_order?>">
+                                <div class="input-group input-group-sm">
+                                  <input type="file" name="bukti" class="form-control" style="height: 39px;">
+                                      <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-info btn-flat">Upload!</button>
+                                      </span>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                          <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                      </div>
+                    </div>
+                  
+                  
+                  <?php }?>
                 </div>
               </div>
             </div>

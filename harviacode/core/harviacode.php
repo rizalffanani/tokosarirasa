@@ -16,20 +16,20 @@ class Harviacode
 
     function connection()
     {
-        $subject = file_get_contents('../application/config/database.php');
-        $string = str_replace("defined('BASEPATH') OR exit('No direct script access allowed');", "", $subject);
+        // $subject = file_get_contents('../application/config/database.php');
+        // $string = str_replace("defined('BASEPATH') OR exit('No direct script access allowed');", "", $subject);
         
-        $con = 'core/connection.php';
-        $create = fopen($con, "w") or die("Change your permision folder for application and harviacode folder to 777");
-        fwrite($create, $string);
-        fclose($create);
+        // $con = 'core/connection.php';
+        // $create = fopen($con, "w") or die("Change your permision folder for application and harviacode folder to 777");
+        // fwrite($create, $string);
+        // fclose($create);
         
-        require $con;
+        // require $con;
 
-        $this->host = $db['default']['hostname'];
-        $this->user = $db['default']['username'];
-        $this->password = $db['default']['password'];
-        $this->database = $db['default']['database'];
+        $this->host = 'localhost';
+        $this->user = 'root';
+        $this->password = '';
+        $this->database = 'dbtokosarirasa1';
 
         $this->sql = new mysqli($this->host, $this->user, $this->password, $this->database);
         if ($this->sql->connect_error)
@@ -38,7 +38,7 @@ class Harviacode
             die();
         }
         
-        unlink($con);
+        // unlink($con);
     }
 
     function table_list()

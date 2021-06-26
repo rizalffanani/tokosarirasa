@@ -97,14 +97,14 @@ class Web extends CI_Controller
     }
     public function checkout($ida="")
     {
-        // $this->load->model('Lokasi_model');
-        // $lok = $this->Lokasi_model->get_all();
         if ($ida!="") {
             $row = $this->Web_model->get_all_where($table="order","id_order",$ida)->row();
             $row2 = $this->Web_model->get_all_where($table="order_detail","id_order",$ida)->result();
             $this->load->model('Users_model');
+            $this->load->model('Bank_model');
             $row3 = $this->Users_model->get_by_id2($row->id_user);
-            $data = array("row"=>$row,"row2"=>$row2,"row3"=>$row3);
+            $row4 = $this->Bank_model->get_all();
+            $data = array("row"=>$row,"row2"=>$row2,"row3"=>$row3,"row4"=>$row4);
             $this->template->load('front','frontend/cart', $data);
         }else{
             $this->authclass->check_isvalidated(base_url().'login');
@@ -198,6 +198,31 @@ class Web extends CI_Controller
         );
         $this->template->load('front','frontend/riwayat', $data);
     } 
+
+    function upload(){
+        $id= $this->input->post('id');
+        $config = array(
+            'upload_path' => 'gambar/bukti/',
+            'allowed_types' => 'jpg|png|jpeg',
+            'file_name' => $id.'file_'.date('dmYHis'),
+            'overwrite' => FALSE,
+            'max_size' => 2048,   
+            'file_ext_tolower' => TRUE,    
+            'max_filename' => 0,
+            'remove_spaces' => TRUE             
+        );
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload('bukti')){
+            $hasil = "bukti berhasil diupload";
+            $fot = $this->upload->file_name;
+            $data = array('bukti'=> $fot);  
+            $this->Web_model->update("order", "id_order", $id, $data);
+            $this->session->set_flashdata('hasil', $hasil);
+            redirect(site_url('web/logorder'));
+        }
+        echo($this->upload->file_name);
+    }
 
     public function search(){
         $keyword = $this->input->post('keyword');

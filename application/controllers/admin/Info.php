@@ -57,7 +57,7 @@ class Info extends CI_Controller
         $row = $this->Info_model->get_by_id($id);
         $config = array(
             'upload_path' => 'assets/img/',
-            'allowed_types' => 'jpg|png',
+            'allowed_types' => 'jpg|png|jpeg',
             'file_name' => $id.'file_'.date('dmYHis'),
             'overwrite' => FALSE,
             'max_size' => 2048,   
